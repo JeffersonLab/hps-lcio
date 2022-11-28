@@ -6,33 +6,9 @@ using namespace EVENT ;
 
 namespace IMPL {
   
-  TrackerHitPlaneImpl::TrackerHitPlaneImpl() :
-    _cellID0(0),
-    _cellID1(0),
-    _type(0),
-    _du(0),
-    _dv(0),
-    _EDep(0),
-    _EDepError(0),
-    _time(0),
-    _quality(0),
-    _rawHits(0)
-    {
-    
-    _pos[0] = 0. ;
-    _pos[1] = 0. ;
-    _pos[2] = 0. ;
-    _u[0] = 0. ;
-    _u[1] = 0. ;
-    _v[0] = 0. ;
-    _v[1] = 0. ;
-    
+  TrackerHitPlaneImpl::TrackerHitPlaneImpl() {
     _cov.resize( TRKHITPLANENCOVMATRIX ) ;
   }
-  
-  TrackerHitPlaneImpl::~TrackerHitPlaneImpl(){  
-  } 
-  
   
   const FloatVec & TrackerHitPlaneImpl::getCovMatrix() const {
     

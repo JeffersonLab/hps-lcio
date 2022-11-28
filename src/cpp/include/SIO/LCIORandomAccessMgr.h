@@ -44,7 +44,11 @@ namespace SIO {
   public:
 
     LCIORandomAccessMgr() ;
-    
+   
+    LCIORandomAccessMgr(const LCIORandomAccessMgr&) = delete; 
+
+    LCIORandomAccessMgr& operator=(const LCIORandomAccessMgr&) = delete; 
+
     virtual ~LCIORandomAccessMgr() ;
  
     /** Return the position of the specified Event record or Run record respectively (if EventNum == -1 ).
@@ -115,10 +119,10 @@ namespace SIO {
     } 
 
     // ----- map with RunHeader and EventHeader record positions
-    RunEventMap _runEvtMap ;
+    RunEventMap _runEvtMap{} ;
     
     // ----- list of LCIORandomAccess objects 
-    std::list< LCIORandomAccess* > _list ;
+    std::list< LCIORandomAccess* > _list{} ;
 
     LCIORandomAccess* _fileRecord ;
 

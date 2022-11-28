@@ -24,7 +24,7 @@ namespace IMPL {
     TrackerHitPlaneImpl() ;
     
     /// Destructor.
-    virtual ~TrackerHitPlaneImpl() ; 
+    virtual ~TrackerHitPlaneImpl() = default; 
 
 
     virtual int id() const { return simpleUID() ; }
@@ -135,21 +135,21 @@ namespace IMPL {
 
 protected:
   
-    int _cellID0 ;
-    int _cellID1 ;
+    int _cellID0{0} ;
+    int _cellID1{0} ;
 
-    int    _type ;
-    double  _pos[3] ;
-    float  _u[2] ;
-    float  _v[2] ;
-    float  _du ;
-    float  _dv ;
-    float _EDep ;
-    float _EDepError ;
-    float _time ;
-    int _quality ;
-    mutable EVENT::FloatVec _cov ;
-    EVENT::LCObjectVec _rawHits ;
+    int    _type{0} ;
+    double  _pos[3] = {0., 0., 0.} ;
+    float  _u[2] = {0., 0.} ;
+    float  _v[2] = {0., 0.} ;
+    float  _du{0} ;
+    float  _dv{0} ;
+    float _EDep{0} ;
+    float _EDepError{0} ;
+    float _time{0} ;
+    int _quality{0} ;
+    mutable EVENT::FloatVec _cov{} ;
+    EVENT::LCObjectVec _rawHits{} ;
     
 
 }; // class

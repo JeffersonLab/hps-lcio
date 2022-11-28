@@ -18,10 +18,10 @@ public:
 
   /** Default Constructor - initializes all data to 0's. 
    */
-  TrackerRawDataImpl() ;
+  TrackerRawDataImpl() = default;
   
   /// Destructor.
-  virtual ~TrackerRawDataImpl() ;
+  virtual ~TrackerRawDataImpl() = default ;
   
   virtual int id() const { return simpleUID() ; }
     
@@ -62,11 +62,11 @@ public:
 
 protected:
 
-  int _cellID0 ;
-  int _cellID1 ;
-  int _channelID ;
-  int  _time ;
-  EVENT::ShortVec _adc ;
+  int _cellID0{0} ;
+  int _cellID1{0} ;
+  int _channelID{0} ;
+  int  _time{0} ;
+  EVENT::ShortVec _adc{} ;
   
 }; // class
 } // namespace IMPL

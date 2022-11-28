@@ -21,9 +21,13 @@ namespace IMPL {
     /** Default Constructor - initializes all data to 0's. 
      */
     TrackerPulseImpl() ;
+
+    TrackerPulseImpl(const TrackerPulseImpl&) = default; 
+
+    TrackerPulseImpl& operator=(const TrackerPulseImpl&) = default; 
     
     /// Destructor.
-    virtual ~TrackerPulseImpl() ;
+    virtual ~TrackerPulseImpl() = default;
     
     virtual int id() const { return simpleUID() ; }
     
@@ -85,15 +89,15 @@ namespace IMPL {
     
 protected:
 
-    int _cellID0 ;
-    int _cellID1 ;
-    float _time ;
+    int _cellID0{0} ;
+    int _cellID1{0} ;
+    float _time{0.} ;
     //float _timeError ;
-    float _charge ;
+    float _charge{0.} ;
     //float _chargeError ;
-    int   _quality ;
-    EVENT::FloatVec _cov ;
-    EVENT::TrackerData* _corrData ;
+    int   _quality{0} ;
+    EVENT::FloatVec _cov{} ;
+    EVENT::TrackerData* _corrData{} ;
     
   }; // class
 } // namespace IMPL

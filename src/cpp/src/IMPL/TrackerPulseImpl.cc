@@ -8,26 +8,9 @@ using namespace EVENT ;
 
 namespace IMPL{
 
-  TrackerPulseImpl::TrackerPulseImpl() : 
-    _cellID0(0) ,
-    _cellID1(0) ,
-    _time(0),
-    //_timeError(0),
-    _charge(0),
-    //_chargeError(0),
-    _quality(0),
-    _corrData(0) {
-
+  TrackerPulseImpl::TrackerPulseImpl() { 
     _cov.resize( TRKPULSENCOVMATRIX ) ;
-    //for(int i=0; i<TRKPULSENCOVMATRIX; i++){
-    //  _cov.push_back(0.0) ;
-    //}
-
   }    
-  
-  /// Destructor.
-  TrackerPulseImpl::~TrackerPulseImpl() {
-  }
   
   void TrackerPulseImpl::setCellID0( int cellID0 ) {
     checkAccess("TrackerPulseImpl::setCellID0") ;
