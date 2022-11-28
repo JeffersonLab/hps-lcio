@@ -8,17 +8,6 @@ using namespace EVENT ;
 
 namespace IMPL{
 
-  TrackerRawDataImpl::TrackerRawDataImpl() : 
-    _cellID0(0) ,
-    _cellID1(0) ,
-    _channelID(0),
-    _time(0){
-  }    
-
-  /// Destructor.
-  TrackerRawDataImpl::~TrackerRawDataImpl() {
-  }
-  
   void TrackerRawDataImpl::setCellID0( int cellID0 ) {
     checkAccess("TrackerRawDataImpl::setCellID0") ;
     _cellID0 = cellID0 ;
