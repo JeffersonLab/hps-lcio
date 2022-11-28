@@ -39,6 +39,10 @@ class SIOEventHandler ;
     /** Default constructor.
      */
     SIOReader( int lcReaderFlag=0 ) ;
+
+    SIOReader(const SIOReader&) = delete; 
+
+    SIOReader& operator=(const SIOReader&) = delete; 
     
     // Destructor
 

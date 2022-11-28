@@ -28,7 +28,11 @@ namespace IMPL {
     VertexImpl() ;
     
     // Destructor.
-    virtual ~VertexImpl() ; 
+    virtual ~VertexImpl() = default;
+
+    VertexImpl(const VertexImpl&) = default;
+
+    VertexImpl& operator=(const VertexImpl&) = default; 
 
     virtual int id() const { return simpleUID() ; }
     
@@ -83,15 +87,15 @@ namespace IMPL {
     void addParameter( float p );
 
   protected:
-    int _primary ;
+    int _primary{0} ;
     //int _type ;
-    std::string _type ;
-    float _chi2 ;
-    float _probability ;
-    float _vpos[3] ;
-    EVENT::FloatVec _cov ;
-    EVENT::FloatVec _par ;
-    EVENT::ReconstructedParticle* _aParticle ;
+    std::string _type{"Unknown"} ;
+    float _chi2{0.} ;
+    float _probability{0.} ;
+    float _vpos[3] = {0., 0., 0.} ;
+    EVENT::FloatVec _cov{} ;
+    EVENT::FloatVec _par{} ;
+    EVENT::ReconstructedParticle* _aParticle{nullptr} ;
    
 }; // class
 
