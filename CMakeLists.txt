@@ -5,7 +5,7 @@
 CMAKE_MINIMUM_REQUIRED( VERSION 2.8 FATAL_ERROR )
 ########################################################
 
-
+SET ( CMAKE_OSX_SYSROOT /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk )
 
 # project name
 PROJECT( LCIO )
@@ -15,7 +15,6 @@ PROJECT( LCIO )
 SET( LCIO_VERSION_MAJOR 2 )
 SET( LCIO_VERSION_MINOR 7 )
 SET( LCIO_VERSION_PATCH 5 )
-
 
 
 ### DEPENDENCIES ############################################################
@@ -114,8 +113,6 @@ IF( NOT EXISTS ${LCIO_ENV_INIT} )
     )
 
 ENDIF()
-
-
 
 
 ### GENERATE HEADERS ( USING ANT ) ##########################################
