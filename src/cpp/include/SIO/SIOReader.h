@@ -49,58 +49,65 @@ class SIOEventHandler ;
      * read operations will operate on the list, i.e. if an EOF is encountered
      * the next file in the list will be opened and read transparently to the
      * user.
+     * Throws exception if one of the files doesn't exist.
+     * 
      * @throws IOException
      */
-    virtual void open(const std::vector<std::string>& filenames) 
-      throw (IO::IOException, std::exception) ;
+    virtual void open(const std::vector<std::string>& filenames);
 
 
     /** Opens a file for reading (read-only).
+     * Throws exception if file doesn't exist.
+     * 
      * @throws IOException
      */
-    virtual void open(const std::string & filename) throw (IO::IOException, std::exception) ;
+    virtual void open(const std::string & filename);
     
-    /** Reads the next run header from the file. 
+    /** Reads the next run header from the file.
+     * Throws exception if file is not open.
      *
      * @throws IOException
      */
-    virtual EVENT::LCRunHeader * readNextRunHeader() throw (IO::IOException, std::exception) ;
+    virtual EVENT::LCRunHeader * readNextRunHeader();
 
     /** Same as readNextRunHeader() but allows to set the access mode 
-     *  LCIO::READ_ONLY (default) or LCIO::Update. 
+     * LCIO::READ_ONLY (default) or LCIO::Update.
+     * Throws exception if file is not open.
      *
      * @throws IOException
      */
-    virtual EVENT::LCRunHeader * readNextRunHeader(int accessMode) throw (IO::IOException, std::exception) ;
+    virtual EVENT::LCRunHeader * readNextRunHeader(int accessMode);
 
 
     /** Reads the next event from the file. 
-     *
+     * Throws exception if file is not open.
+     * 
      * @throws IOException
      */
-    virtual EVENT::LCEvent* readNextEvent() throw (IO::IOException, std::exception) ;
+    virtual EVENT::LCEvent* readNextEvent() ;
     
 
     /** Same as readNextRunHeader() but allows to set the access mode 
      *  LCIO::READ_ONLY (default) or LCIO::Update
+     * Throws exception if file is not open.
      *
      * @throws IOException
      */
-    virtual EVENT::LCEvent* readNextEvent( int accessMode) throw (IO::IOException, std::exception) ;
+    virtual EVENT::LCEvent* readNextEvent( int accessMode);
     
 
     /** Return the number of events in the file - the file has to be open. In
      *  case several input files are specified in the open() method - 
      *  the number of events in the file that is currently open is returned. 
      */
-   virtual int getNumberOfEvents() throw (IO::IOException, std::exception ) ;
+   virtual int getNumberOfEvents();
 
 
     /** Return the number of runs (run headers) in the file - the file has to be open. In
      *  case several input files are specified in the open() method - 
      *  the number of runs (run headers) in the file that is currently open is returned. 
      */
-    virtual int getNumberOfRuns() throw (IO::IOException, std::exception ) ;
+    virtual int getNumberOfRuns();
 
 
     /** Return the run numbers of the runs (run headers) in the file - the file has to be open. In
@@ -121,7 +128,7 @@ class SIOEventHandler ;
     /** Skips the next n events from the current position. In fact simply reads the next n
       *  event headers so that the next event read is the (n+1)-th event.
       */
-    virtual void skipNEvents(int n)   throw (IO::IOException, std::exception )  ;
+    virtual void skipNEvents(int n);
 
 
 
@@ -134,42 +141,43 @@ class SIOEventHandler ;
 
     /** Reads the specified runHeader from file. Returns NULL if
      *  the specified runHeader hasn't been found in the file.
-     *
+     * Throws exception if stream can't be seeked to the specified position.
+     * 
      * @throws IOException
      */
-    virtual EVENT::LCRunHeader * readRunHeader(int runNumber ) 
-      throw (IO::IOException , std::exception) ;
+    virtual EVENT::LCRunHeader * readRunHeader(int runNumber );
 
     /** Same as LCEvent* readRunHeader(int runNumber) 
      *  allowing to set the access mode LCIO::READ_ONLY (default) or LCIO::Update.
+     * Throws exception if stream can't be seeked to the specified position.
      *
      * @throws IOException
      */
-    virtual EVENT::LCRunHeader * readRunHeader(int runNumber, int accessMode ) 
-      throw (IO::IOException , std::exception) ;
+    virtual EVENT::LCRunHeader * readRunHeader(int runNumber, int accessMode );
 
     /** Reads the specified event from file. Returns NULL if
      *  the specified event hasn't been found in the file.
+     * Throws exception if stream can't be seeked to the specified position.
      *
      * @throws IOException
      */
-    virtual EVENT::LCEvent * readEvent(int runNumber, int evtNumber) 
-      throw (IO::IOException, std::exception ) ;
+    virtual EVENT::LCEvent * readEvent(int runNumber, int evtNumber);
 
 
     /** Same as LCEvent* readEvent(int runNumber, int evtNumber 
      *  allowing to set the access mode LCIO::READ_ONLY (default) or LCIO::Update.
+     *  Throws exception if stream can't be seeked to the specified position.
      *
      * @throws IOException
      */
-    virtual EVENT::LCEvent * readEvent(int runNumber, int evtNumber, int accessMode) 
-      throw (IO::IOException, std::exception ) ;
+    virtual EVENT::LCEvent * readEvent(int runNumber, int evtNumber, int accessMode);
     
     /** Closes the output file/stream etc.
-     *
+     * Throws exception if stream could not be removed.
+     * 
      * @throws IOException
      */
-    virtual void close() throw (IO::IOException, std::exception) ;
+    virtual void close();
     
     // interface for listeners
  
@@ -191,21 +199,20 @@ class SIOEventHandler ;
 
     /** Reads the input stream and notifies registered 
      * listeners according to the object type 
-     * found in the stream. 
+     * found in the stream.
      *
-     * @throws IOException
-     * @throws EndOfException
+     * @throws IOException  if there is an error in the stream
+     * @throws EndOfDataException if less than maxRecord records are found in the stream.
      */
-    virtual void readStream() throw (IO::IOException, std::exception) ;
+    virtual void readStream();
 
     /** Reads maxRecord from the input stream and notifies registered 
-     * listeners according to the object type found in the stream. 
-     * Throws EndOfException if less than maxRecord records are found in the stream. 
+     * listeners according to the object type found in the stream.
      *
-     * @throws IOException
-     * @throws EndOfException
+     * @throws IOException if there is an error in the stream
+     * @throws EndOfDataException if less than maxRecord records are found in the stream.
      */
-    virtual void readStream(int maxRecord) throw (IO::IOException, std::exception) ;
+    virtual void readStream(int maxRecord);
 
 
 
@@ -213,7 +220,7 @@ class SIOEventHandler ;
   protected:
 
     void setUpHandlers() ;
-    void readRecord() throw (IO::IOException , IO::EndOfDataException , std::exception) ;
+    void readRecord();
 
 
     void postProcessEvent() ;
