@@ -46,9 +46,6 @@ namespace SIO{
     // read TrackStates
     int nTrackStates = 1 ; // set to 1 per default for backwards compatibility
     
-    std::cout<<"SIOTrackHandler:: _vers = "<<_vers
-	     <<"  SIO_VERSION_ENCODE(2,0) = "<<SIO_VERSION_ENCODE( 2, 0)
-	     <<"  SIO_VERSION_ENCODE(3,0) = "<<SIO_VERSION_ENCODE( 3, 0)<<std::endl;
     if( _vers >= SIO_VERSION_ENCODE( 2, 0)   ) {
         SIO_DATA( stream ,  &nTrackStates  , 1 ) ;
     }
