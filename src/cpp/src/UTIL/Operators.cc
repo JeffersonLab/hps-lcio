@@ -2693,11 +2693,11 @@ namespace UTIL{
         }
         out << endl;
 	const TrackStateVec& trackStates=trk->getTrackStates(); 
-	for(int s=0; s<trackStates.size(); s++){
-	  out<<"track state location = "<<trackStates[s]->getLocation()
-	     <<"   ReferencePoint (x,y,z) tracking frame = ("<<trackStates[s]->getReferencePoint()[0]
-	     <<", "<<trackStates[s]->getReferencePoint()[1]
-	     <<", "<<trackStates[s]->getReferencePoint()[2]<<")";
+	for(auto trackState : trackStates){
+	  out<<"track state location = "<<trackState->getLocation()
+	     <<"   ReferencePoint (x,y,z) tracking frame = ("<<trackState->getReferencePoint()[0]
+	     <<", "<<trackState->getReferencePoint()[1]
+	     <<", "<<trackState->getReferencePoint()[2]<<")";
 	  out<<endl;
 	}
 

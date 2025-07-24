@@ -58,24 +58,24 @@ int main(int argc, char** argv ){
 	  
 	  FILE* f = fopen( FILEN[i].c_str()  , "r+") ;
 	  
-	  if( f != 0 ){
+	  if( f != nullptr ){
 	    
 	    fseek( f ,  -( LCSIO_RANDOMACCESS_SIZE ) , SEEK_END ) ; 
-	    std::string bla("") ;
+	    std::string bla;
 	    bla.resize(17) ;
 	    
-	    int status = fread( &bla[0] , sizeof(char) , 16 , f ) ;
+	    fread( &bla[0] , sizeof(char) , 16 , f ) ;
 	    
 	    //	    std::cout << "  ====== read : [" << bla << "]" << std::endl ; 
 	    
 	    if( !strcmp( bla.c_str() , "LCIORandomAccess")  ){ 
 	      
 	      
-	      status = fseek( f ,  -(16) , SEEK_CUR ) ;
+	      fseek( f ,  -(16) , SEEK_CUR ) ;
 	      
 	      bla = "LCIORandomIGNORE" ;
 	      
-	      status = fwrite( &bla[0] , 1 , 16 , f ) ;
+	      fwrite( &bla[0] , 1 , 16 , f ) ;
 	      
 	      //	      std::cout << "  --------- wrote " << bla << " to file - bytes written " << status << std::endl; 
 	    } 
